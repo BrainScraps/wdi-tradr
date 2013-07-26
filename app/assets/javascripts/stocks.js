@@ -3,8 +3,10 @@
 
 
 $(document).ready( function(){
-	
+	window.livemode = 'off';
 	var livegraph = function(){
+
+	  if (livemode == 'off'){
 		//alert('click.');
 		var checked = $('input:checked');
 		var stock_array = {};
@@ -31,7 +33,29 @@ $(document).ready( function(){
 		      type: "post",
 		      url: "/livegraph_start"
     	});
+
+    	window.intervalID = setInterval(livegraph_refresh,2000);
+    	livemode = 'on';
+		} else {
+			checkboxes = $('input[type=checkbox]');
+
+		checkboxes.each( function(){
+			this.disabled = false;
+		});
+			clearInterval(intervalID);
+			livemode = 'off';
+		}
+
 	};
+
+	var livegraph_refresh = function(){
+			$.ajax({
+		      dataType: "script",
+		      data: chartdata,
+		      type: "post",
+		      url: "/livegraph_refresh"
+    	});
+	}
 
 
 	$('#livegraph').on('click', livegraph);

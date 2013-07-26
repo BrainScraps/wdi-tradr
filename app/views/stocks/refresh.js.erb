@@ -1,0 +1,24 @@
+console.log('refreshed page');
+
+<% @params.each do |k, v| %>
+<% next if k == 'action' || k == 'controller' %>
+<% info = get_stock_info(k) %>
+
+chartdata['<%= k %>'].push({'time': '<%= info[:timestamp].strftime("%H:%M:%S") %>', 'price': '<%= info[:price]%>'});
+
+<% end %>
+
+$("#livegraphs").empty();
+<% int = 0 %>
+<% @params.each do |k, v| %>
+<% next if k == 'action' || k == 'controller' %>
+$("#livegraphs").append('<div id="graph-<%= int %>" class="grph"></div>');
+new Morris.Bar({
+  element: 'graph-<%= int %>',
+  data: chartdata['<%= k %>'],
+  xkey: 'time',
+  ykeys: ['price'],
+  labels: ['price']
+});
+<% int = int + 1 %>
+<% end %>

@@ -4,16 +4,17 @@ window.chartdata = {};
 <% next if k == 'action' || k == 'controller' %>
 <% info = get_stock_info(v) %>
 chartdata['<%= v %>'] = [];
-chartdata['<%= v %>'].push({'time': '<%= info[:timestamp] %>', 'price': '<%= info[:price]%>'});
+chartdata['<%= v %>'].push({'time': '<%= info[:timestamp].strftime("%H:%M:%S") %>', 'price': '<%= info[:price]%>'});
 
 <% end %>
 
 alert('response from live.js');
+$("#livegraphs").empty();
 
 <% @params.each do |k, v| %>
 <% next if k == 'action' || k == 'controller' %>
-$("#livegraphs").append('<div id="graph-<%= k %>"></div>');
-new Morris.Line({
+$("#livegraphs").append('<div id="graph-<%= k %>" class="grph"></div>');
+new Morris.Bar({
   element: 'graph-<%= k %>',
   data: chartdata['<%= v %>'],
   xkey: 'time',

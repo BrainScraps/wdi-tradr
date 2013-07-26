@@ -25,6 +25,11 @@ class StocksController < ApplicationController
     @params = params  
   end
 
+  def refresh
+    @params = params  
+    
+  end
+
   def show
   end
 

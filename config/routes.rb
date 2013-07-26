@@ -10,4 +10,5 @@ WdiTradr::Application.routes.draw do
   match 'logout' => 'user_sessions#destroy', :as => :logout
   post 'create_stock' => 'stocks#create', :as => 'create_stocks'
   post 'livegraph_start' => 'stocks#live', :as => 'livegraph_start'
+  post 'livegraph_refresh' => 'stocks#refresh', :as => 'livegraph_refresh'
 end
