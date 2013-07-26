@@ -12,7 +12,7 @@ $("#livegraphs").empty();
 
 <% @params.each do |k, v| %>
 <% next if k == 'action' || k == 'controller' %>
-$("#livegraphs").append('<h3> <%= v %> </h3><div id="graph-<%= k %>" class="grph"></div>');
+$("#livegraphs").append('<h3> <%= v %> </h3><br/><div id="graph-<%= k %>" class="grph"></div>');
 new Morris.Line({
   element: 'graph-<%= k %>',
   data: chartdata['<%= v %>'],
