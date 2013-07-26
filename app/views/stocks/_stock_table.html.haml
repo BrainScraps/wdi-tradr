@@ -6,6 +6,7 @@
     %th Average Price
     %th Current Price
     %th Current Profit
+    %th LiveGraph
   - @means.each do |k, v|
     %tr
       - now_price = get_price(k)
@@ -18,3 +19,6 @@
         %td= content_tag( :span, number_to_currency(now_profit), :class => "profit")
       - else 
         %td= content_tag( :span, number_to_currency(now_profit), :class => "loss")
+      %td= check_box_tag k, k
+
+= button_tag("LiveGraph", {:id => "livegraph", :type => "button", :class => "btn btn-info", "data-toggle" => "button"})

@@ -21,8 +21,8 @@ class StocksController < ApplicationController
     @means = current_user.stock_means
   end
 
-  def refresh_data
-
+  def live
+    
   
   end
 
