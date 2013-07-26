@@ -10,20 +10,6 @@
   = hidden_field_tag "user_id" , current_user.id
   %br
   = button_tag "Add shares"
-
-
-%table.table
-  %thead
-    %th Symbol
-    %th Quantity
-    %th StartPrice
-    %th Current Price
-    %th Current Profit
-= @stocks.each do |stock|
-  %tr
-    %td= stock.symbol
-    %td= stock.quantity
-    %td= stock.starting_price
-    %td bleh
-    %td bleh
+#table_div
+  = render 'stock_table'
 

@@ -1,1 +1,5 @@
-alert('You added a stock: <%= @stock.symbol %>');
+$('#table_div').empty().html('<%= j render :partial => "stocks/stock_table" %>');
+
+$('#symbol').val('');
+
+$('#quantity').val('');
