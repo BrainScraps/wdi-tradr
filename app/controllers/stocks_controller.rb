@@ -22,8 +22,7 @@ class StocksController < ApplicationController
   end
 
   def live
-    
-  
+    @params = params  
   end
 
   def show
@@ -48,11 +47,20 @@ class StocksController < ApplicationController
 
   end
 
+  def get_stock_info(symbol)
+
+    quote = Stockery::Quote.new
+
+    resp = quote.get_status(symbol)
+
+  end
+
   def get_profit(quantity,paid, quote)
      (quantity * quote) - (quantity * paid)
   end
 
   helper_method :get_price 
   helper_method :get_profit
+  helper_method :get_stock_info
 
 end

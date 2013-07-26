@@ -1,1 +1,23 @@
+window.chartdata = {};
+
+<% @params.each do |k, v| %>
+<% next if k == 'action' || k == 'controller' %>
+<% info = get_stock_info(v) %>
+chartdata['<%= v %>'] = [];
+chartdata['<%= v %>'].push({'time': '<%= info[:timestamp] %>', 'price': '<%= info[:price]%>'});
+
+<% end %>
+
 alert('response from live.js');
+
+<% @params.each do |k, v| %>
+<% next if k == 'action' || k == 'controller' %>
+$("#livegraphs").append('<div id="graph-<%= k %>"></div>');
+new Morris.Line({
+  element: 'graph-<%= k %>',
+  data: chartdata['<%= v %>'],
+  xkey: 'time',
+  ykeys: ['price'],
+  labels: ['price']
+});
+<% end %>
