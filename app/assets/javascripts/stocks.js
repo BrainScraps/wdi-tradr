@@ -34,7 +34,7 @@ $(document).ready( function(){
 		      url: "/livegraph_start"
     	});
 
-    	window.intervalID = setInterval(livegraph_refresh,2000);
+    	window.intervalID = setInterval(livegraph_refresh, 1000);
     	livemode = 'on';
 		} else {
 			checkboxes = $('input[type=checkbox]');
