@@ -1,13 +1,2 @@
-$(document).ready(function(){
-  var refresh_stocks_table = function(){
-    $.ajax({
-      dataType: "script",
-      type: "get",
-      url: "/users/refresh_table"
-    });
-  };
-
-  // $("#refresh_stocks").on('click', refresh_stocks_table);
-
-  setInterval(refresh_stocks_table, 1000);
-});
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.

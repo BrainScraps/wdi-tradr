@@ -16,6 +16,7 @@ class StocksController < ApplicationController
     @stock = @user.stocks.new(symbol: params[:symbol], quantity: params[:quantity].to_i)
     @stock.set_price(params[:symbol])
     @stock.save
+
     @stocks = current_user.stocks
     @means = current_user.stock_means
   end
@@ -54,12 +55,4 @@ class StocksController < ApplicationController
   helper_method :get_price 
   helper_method :get_profit
 
-  # POST /stocks
-  # POST /stocks.json
-  def create
-    @stock = current_user.stocks.build(params[:stock])
-
-    @stock.save
-    @stocks = current_user.stocks
-  end
 end
